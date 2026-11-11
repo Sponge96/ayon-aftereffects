@@ -152,7 +152,8 @@ class ScriptService:
 
         result = StringTemplate.format_template(path, template_data)
         if result.solved:
-            resolved = anatomy.path_remapper(result.normalized())
+            normalized = result.normalized()
+            resolved = anatomy.path_remapper(normalized) or normalized
             return result, resolved
 
         return result, path
